@@ -1,0 +1,117 @@
+body {
+    background: #e4ebf4;
+    padding: 2rem;
+  }
+  h1 {
+    font-family: sans-serif;
+  }
+  .olcards,
+  .olcards * {
+    margin: 0;
+    padding: 0;
+    max-width: 70vw;
+    box-sizing: border-box;
+  }
+  
+  .olcards {
+    list-style: none;
+    counter-reset: cardCount;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    --cardsGap: 1rem;
+    max-width: 70vw;
+    gap: var(--cardsGap);
+    padding-bottom: var(--cardsGap);
+  }
+  .olcards li {
+    counter-increment: cardCount;
+    display: flex;
+    color: white;
+    
+    --labelOffset: 1rem;
+    --arrowClipSize: 1.5rem;
+    margin-top: var(--labelOffset);
+  }
+  
+  .olcards li::before {
+    content: counter(cardCount, decimal-leading-zero);
+    background: white;
+    color: #36aeb3;
+    font-size: 2em;
+    font-weight: 700;
+    transform: translateY(calc(-1 * var(--labelOffset)));
+    margin-right: calc(-1 * var(--labelOffset));
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 0.5em;
+  }
+  
+  .olcards li .content {
+    background-color: #36aeb3;
+    --inlinePadding: 1em;
+    --boxPadding: 0.5em;
+    display: grid;
+    padding: var(--boxPadding) calc(var(--inlinePadding) + var(--arrowClipSize))
+      var(--boxPadding) calc(var(--inlinePadding) + var(--labelOffset));
+    grid-template-areas:
+      "icon title"
+      "icon sub-title"
+      "icon text";
+    gap: 0.25em 1em;
+   
+    position: relative;
+  }
+  .olcards li .content::before {
+    content: "";
+    position: absolute;
+    width: var(--labelOffset);
+    height: var(--labelOffset);
+    background: #36aeb3;
+    left: 0;
+    bottom: 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    filter: brightness(0.75);
+  }
+  .olcards li .content::after {
+    content: "";
+    position: absolute;
+    height: var(--cardsGap);
+    width: var(--cardsGap);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.25), transparent 50%);
+    left: 0;
+    top: 100%;
+  }
+  .olcards li .icon {
+    grid-area: icon;
+    align-self: center;
+    font-size: 2em;
+  }
+  .olcards li .content .title {
+    grid-area: title;
+    font-size: 30px;
+    max-width: 60vw;
+    overflow-wrap: break-word;
+    
+    font-weight: 700;
+  }
+
+  .olcards li .content .sub-title {
+    grid-area: sub-title;
+    font-size: 20px;
+    
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+
+    font-weight: 600;
+  }
+  .olcards li .content .text {
+    grid-area: text;
+    font-size: 1em;
+    max-width: 60vw;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  

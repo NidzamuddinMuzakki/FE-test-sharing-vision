@@ -4,9 +4,9 @@ import { Footer, Header } from "../components"
 const HomeLayout = () => {
   return (
     <>
-    <Header />
+    {/* <Header /> */}
     <Outlet />
-    <Footer />
+    {/* <Footer /> */}
     </>
   )
 }
